@@ -13,6 +13,8 @@
 		BFC0243120BE5C42000A5018 /* EPLife.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFC0242F20BE5C42000A5018 /* EPLife.xcdatamodeld */; };
 		BFC0243320BE5C44000A5018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC0243220BE5C44000A5018 /* Assets.xcassets */; };
 		BFC0243620BE5C44000A5018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC0243420BE5C44000A5018 /* LaunchScreen.storyboard */; };
+		BFC0243F20BE5CDF000A5018 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC0243D20BE5CDF000A5018 /* Crashlytics.framework */; };
+		BFC0244020BE5CDF000A5018 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC0243E20BE5CDF000A5018 /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		BFC0243220BE5C44000A5018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC0243520BE5C44000A5018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC0243720BE5C44000A5018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFC0243D20BE5CDF000A5018 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		BFC0243E20BE5CDF000A5018 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC0243F20BE5CDF000A5018 /* Crashlytics.framework in Frameworks */,
+				BFC0244020BE5CDF000A5018 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +46,8 @@
 		BFC0241C20BE5C42000A5018 = {
 			isa = PBXGroup;
 			children = (
+				BFC0243D20BE5CDF000A5018 /* Crashlytics.framework */,
+				BFC0243E20BE5CDF000A5018 /* Fabric.framework */,
 				BFC0242720BE5C42000A5018 /* EPLife */,
 				BFC0242620BE5C42000A5018 /* Products */,
 			);
@@ -77,6 +85,7 @@
 				BFC0242120BE5C42000A5018 /* Sources */,
 				BFC0242220BE5C42000A5018 /* Frameworks */,
 				BFC0242320BE5C42000A5018 /* Resources */,
+				BFC0244120BE613B000A5018 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -132,6 +141,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BFC0244120BE613B000A5018 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Fabric.framework/run\" c573d8f9475e4b9666709589c6d8cc82e2c295b7 04f96ca9e11e53b743794cd31329487c531dbe9835d9e50a4369a83b4cd4897b";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BFC0242120BE5C42000A5018 /* Sources */ = {
@@ -286,6 +311,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V3X7X6WG69;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = EPLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -294,7 +323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.louis.EPLife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -304,6 +333,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V3X7X6WG69;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = EPLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -312,7 +345,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.louis.EPLife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
