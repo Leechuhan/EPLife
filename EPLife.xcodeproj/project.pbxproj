@@ -7,20 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF02B30120C278EF0063D92E /* SystemTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02B30020C278EF0063D92E /* SystemTabBarController.swift */; };
+		BF1BC97920C266FB00444B96 /* UserLocationStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1BC97820C266FB00444B96 /* UserLocationStationViewController.swift */; };
+		BF1BC97C20C268DD00444B96 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1BC97B20C268DD00444B96 /* MapKit.framework */; };
+		BF1BC97E20C268EC00444B96 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1BC97D20C268EC00444B96 /* CoreLocation.framework */; };
+		BF664E9220C301E4000C9865 /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF664E9120C301E4000C9865 /* StationsViewController.swift */; };
+		BF664E9620C3047B000C9865 /* AreaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF664E9520C3047B000C9865 /* AreaListViewController.swift */; };
+		BF664E9820C30C8F000C9865 /* AreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF664E9720C30C8F000C9865 /* AreaTableViewCell.swift */; };
 		BFC0242920BE5C42000A5018 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0242820BE5C42000A5018 /* AppDelegate.swift */; };
-		BFC0242B20BE5C42000A5018 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0242A20BE5C42000A5018 /* ViewController.swift */; };
 		BFC0242E20BE5C42000A5018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC0242C20BE5C42000A5018 /* Main.storyboard */; };
 		BFC0243120BE5C42000A5018 /* EPLife.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFC0242F20BE5C42000A5018 /* EPLife.xcdatamodeld */; };
 		BFC0243320BE5C44000A5018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC0243220BE5C44000A5018 /* Assets.xcassets */; };
 		BFC0243620BE5C44000A5018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC0243420BE5C44000A5018 /* LaunchScreen.storyboard */; };
 		BFC0243F20BE5CDF000A5018 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC0243D20BE5CDF000A5018 /* Crashlytics.framework */; };
 		BFC0244020BE5CDF000A5018 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC0243E20BE5CDF000A5018 /* Fabric.framework */; };
+		BFC4649D20C8158D00E45586 /* PinStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4649C20C8158D00E45586 /* PinStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF02B30020C278EF0063D92E /* SystemTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTabBarController.swift; sourceTree = "<group>"; };
+		BF1BC97820C266FB00444B96 /* UserLocationStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationStationViewController.swift; sourceTree = "<group>"; };
+		BF1BC97B20C268DD00444B96 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BF1BC97D20C268EC00444B96 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BF664E9120C301E4000C9865 /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
+		BF664E9520C3047B000C9865 /* AreaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaListViewController.swift; sourceTree = "<group>"; };
+		BF664E9720C30C8F000C9865 /* AreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaTableViewCell.swift; sourceTree = "<group>"; };
 		BFC0242520BE5C42000A5018 /* EPLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EPLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC0242820BE5C42000A5018 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFC0242A20BE5C42000A5018 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFC0242D20BE5C42000A5018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFC0243020BE5C42000A5018 /* EPLife.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EPLife.xcdatamodel; sourceTree = "<group>"; };
 		BFC0243220BE5C44000A5018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,6 +41,7 @@
 		BFC0243720BE5C44000A5018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC0243D20BE5CDF000A5018 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		BFC0243E20BE5CDF000A5018 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		BFC4649C20C8158D00E45586 /* PinStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1BC97E20C268EC00444B96 /* CoreLocation.framework in Frameworks */,
+				BF1BC97C20C268DD00444B96 /* MapKit.framework in Frameworks */,
 				BFC0243F20BE5CDF000A5018 /* Crashlytics.framework in Frameworks */,
 				BFC0244020BE5CDF000A5018 /* Fabric.framework in Frameworks */,
 			);
@@ -43,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF1BC97A20C268DD00444B96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF1BC97D20C268EC00444B96 /* CoreLocation.framework */,
+				BF1BC97B20C268DD00444B96 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BFC0241C20BE5C42000A5018 = {
 			isa = PBXGroup;
 			children = (
@@ -50,6 +75,7 @@
 				BFC0243E20BE5CDF000A5018 /* Fabric.framework */,
 				BFC0242720BE5C42000A5018 /* EPLife */,
 				BFC0242620BE5C42000A5018 /* Products */,
+				BF1BC97A20C268DD00444B96 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,7 +91,12 @@
 			isa = PBXGroup;
 			children = (
 				BFC0242820BE5C42000A5018 /* AppDelegate.swift */,
-				BFC0242A20BE5C42000A5018 /* ViewController.swift */,
+				BFC4649C20C8158D00E45586 /* PinStatus.swift */,
+				BF02B30020C278EF0063D92E /* SystemTabBarController.swift */,
+				BF1BC97820C266FB00444B96 /* UserLocationStationViewController.swift */,
+				BF664E9120C301E4000C9865 /* StationsViewController.swift */,
+				BF664E9520C3047B000C9865 /* AreaListViewController.swift */,
+				BF664E9720C30C8F000C9865 /* AreaTableViewCell.swift */,
 				BFC0242C20BE5C42000A5018 /* Main.storyboard */,
 				BFC0243220BE5C44000A5018 /* Assets.xcassets */,
 				BFC0243420BE5C44000A5018 /* LaunchScreen.storyboard */,
@@ -163,9 +194,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF02B30120C278EF0063D92E /* SystemTabBarController.swift in Sources */,
 				BFC0243120BE5C42000A5018 /* EPLife.xcdatamodeld in Sources */,
-				BFC0242B20BE5C42000A5018 /* ViewController.swift in Sources */,
 				BFC0242920BE5C42000A5018 /* AppDelegate.swift in Sources */,
+				BF664E9820C30C8F000C9865 /* AreaTableViewCell.swift in Sources */,
+				BF664E9220C301E4000C9865 /* StationsViewController.swift in Sources */,
+				BFC4649D20C8158D00E45586 /* PinStatus.swift in Sources */,
+				BF1BC97920C266FB00444B96 /* UserLocationStationViewController.swift in Sources */,
+				BF664E9620C3047B000C9865 /* AreaListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
