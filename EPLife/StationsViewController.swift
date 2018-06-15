@@ -18,6 +18,10 @@ class StationsViewController: UIViewController {
         performSegue(withIdentifier: "GoAreaList", sender: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Init"), object: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

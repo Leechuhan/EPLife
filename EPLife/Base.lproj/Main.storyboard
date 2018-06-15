@@ -273,13 +273,13 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Full" translatesAutoresizingMaskIntoConstraints="NO" id="E2G-bW-pOx">
                                 <rect key="frame" x="133" y="122" width="108" height="131"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station Name / 站名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mf8-mE-dhe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station / 站名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mf8-mE-dhe">
                                 <rect key="frame" x="30" y="273" width="315" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="國父紀念館站 / 2出口" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvZ-tM-TXv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="國父紀念館站 / 2出口" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VvZ-tM-TXv">
                                 <rect key="frame" x="30" y="312" width="315" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -321,6 +321,9 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="TYe-b7-aTm">
+                                <rect key="frame" x="169" y="315.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -339,10 +342,12 @@
                             <constraint firstItem="t4B-pN-mHx" firstAttribute="leading" secondItem="K0P-gj-J2t" secondAttribute="leading" id="R7s-yb-4yZ"/>
                             <constraint firstItem="4KX-zd-yBH" firstAttribute="top" secondItem="t4B-pN-mHx" secondAttribute="bottom" constant="20" id="RWC-rK-2hX"/>
                             <constraint firstItem="Mf8-mE-dhe" firstAttribute="top" secondItem="E2G-bW-pOx" secondAttribute="bottom" constant="20" id="T4x-Eb-Tt8"/>
+                            <constraint firstItem="TYe-b7-aTm" firstAttribute="centerY" secondItem="OEl-qc-OAG" secondAttribute="centerY" id="Vmk-1T-bk7"/>
                             <constraint firstItem="K0P-gj-J2t" firstAttribute="trailing" secondItem="Mf8-mE-dhe" secondAttribute="trailing" id="Vo4-zm-Ht0"/>
                             <constraint firstItem="mtU-5Y-H3U" firstAttribute="leading" secondItem="t4B-pN-mHx" secondAttribute="trailing" constant="10" id="WrT-7k-lPF"/>
                             <constraint firstItem="t4B-pN-mHx" firstAttribute="top" secondItem="K0P-gj-J2t" secondAttribute="bottom" constant="20" id="Yod-35-uIC"/>
                             <constraint firstItem="0fw-at-5hT" firstAttribute="centerY" secondItem="mtU-5Y-H3U" secondAttribute="centerY" id="Z0J-YK-t77"/>
+                            <constraint firstItem="TYe-b7-aTm" firstAttribute="centerX" secondItem="OEl-qc-OAG" secondAttribute="centerX" id="a6u-7y-eL6"/>
                             <constraint firstItem="0fw-at-5hT" firstAttribute="trailing" secondItem="K0P-gj-J2t" secondAttribute="trailing" id="bl0-k8-X51"/>
                             <constraint firstItem="4KX-zd-yBH" firstAttribute="centerX" secondItem="OEl-qc-OAG" secondAttribute="centerX" id="d9T-8Z-L9Y"/>
                             <constraint firstItem="VvZ-tM-TXv" firstAttribute="trailing" secondItem="Mf8-mE-dhe" secondAttribute="trailing" id="gaf-Dk-eFc"/>
@@ -365,18 +370,22 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="NearStation" id="2rg-JT-oqN"/>
                     <connections>
+                        <outlet property="carsNum" destination="0fw-at-5hT" id="Z0X-ar-dPI"/>
                         <outlet property="closeButton" destination="58E-Ee-tM3" id="ZDt-iM-YES"/>
                         <outlet property="closeButtonConstrain" destination="r9B-ZC-tHe" id="9NL-Zq-0FC"/>
                         <outlet property="informationBackground" destination="boT-BG-C68" id="VZ0-fz-qOz"/>
                         <outlet property="informationView" destination="wyW-CB-feq" id="Ny0-Ad-XcN"/>
                         <outlet property="informationViewConstraint" destination="nU3-mD-8c5" id="djk-bR-tBy"/>
+                        <outlet property="loading" destination="TYe-b7-aTm" id="3ee-Lk-cpE"/>
                         <outlet property="mapView" destination="hMo-FT-ceg" id="gIv-74-Tjq"/>
+                        <outlet property="parkNum" destination="J00-J3-6dV" id="PTk-vS-FdH"/>
+                        <outlet property="stationName" destination="VvZ-tM-TXv" id="EeK-gJ-vQv"/>
                         <outlet property="stationStatus" destination="E2G-bW-pOx" id="aLc-NY-OFi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZoD-qf-IY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="552.79999999999995" y="-474.51274362818594"/>
+            <point key="canvasLocation" x="553" y="-581"/>
         </scene>
         <!--System Tab Bar Controller-->
         <scene sceneID="qA2-6b-jEc">

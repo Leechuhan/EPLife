@@ -21,7 +21,6 @@
 		BFC0243620BE5C44000A5018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC0243420BE5C44000A5018 /* LaunchScreen.storyboard */; };
 		BFC0243F20BE5CDF000A5018 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC0243D20BE5CDF000A5018 /* Crashlytics.framework */; };
 		BFC0244020BE5CDF000A5018 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC0243E20BE5CDF000A5018 /* Fabric.framework */; };
-		BFC4649D20C8158D00E45586 /* PinStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4649C20C8158D00E45586 /* PinStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +40,6 @@
 		BFC0243720BE5C44000A5018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC0243D20BE5CDF000A5018 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		BFC0243E20BE5CDF000A5018 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		BFC4649C20C8158D00E45586 /* PinStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				BFC0242820BE5C42000A5018 /* AppDelegate.swift */,
-				BFC4649C20C8158D00E45586 /* PinStatus.swift */,
 				BF02B30020C278EF0063D92E /* SystemTabBarController.swift */,
 				BF1BC97820C266FB00444B96 /* UserLocationStationViewController.swift */,
 				BF664E9120C301E4000C9865 /* StationsViewController.swift */,
@@ -199,7 +196,6 @@
 				BFC0242920BE5C42000A5018 /* AppDelegate.swift in Sources */,
 				BF664E9820C30C8F000C9865 /* AreaTableViewCell.swift in Sources */,
 				BF664E9220C301E4000C9865 /* StationsViewController.swift in Sources */,
-				BFC4649D20C8158D00E45586 /* PinStatus.swift in Sources */,
 				BF1BC97920C266FB00444B96 /* UserLocationStationViewController.swift in Sources */,
 				BF664E9620C3047B000C9865 /* AreaListViewController.swift in Sources */,
 			);
