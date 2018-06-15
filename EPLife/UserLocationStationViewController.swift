@@ -37,6 +37,7 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: NSNotification.Name(rawValue: "Init"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(removeAnnotations), name: NSNotification.Name(rawValue: "RemoveAnnotations"), object: nil)
         
         initData()
         informationViewConstraint.constant = -(informationView.frame.height)
@@ -146,6 +147,12 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
         closeButton.isHidden = true
         informationBackground.isHidden = true
         startInformationViewMove()
+    }
+    
+    @objc func removeAnnotations() {
+        manager.stopUpdatingLocation()
+        mapView.removeAnnotations(stationAnnotations)
+        stationAnnotations = []
     }
     
     func startInformationViewMove() {
@@ -263,9 +270,7 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        manager.stopUpdatingLocation()
-        mapView.removeAnnotations(stationAnnotations)
-        stationAnnotations = []
+        removeAnnotations()
     }
     
 }

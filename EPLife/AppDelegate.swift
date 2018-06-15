@@ -26,9 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RemoveAnnotations"), object: nil)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Init"), object: nil)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
