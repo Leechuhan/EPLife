@@ -26,10 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RemoveAnnotations"), object: nil)
+        //退到背景將資訊頁init
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DismissPage"), object: nil)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        //回到前景init頁面
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Init"), object: nil)
     }
 
@@ -65,4 +67,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

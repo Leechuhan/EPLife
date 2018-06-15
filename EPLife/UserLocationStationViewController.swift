@@ -17,7 +17,7 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var informationView: UIImageView!
     @IBOutlet weak var informationViewConstraint: NSLayoutConstraint!
-    @IBOutlet weak var closeButtonConstrain: NSLayoutConstraint!
+//    @IBOutlet weak var closeButtonConstrain: NSLayoutConstraint!
     @IBOutlet weak var stationStatus: UIImageView!
     
     @IBOutlet weak var stationName: UILabel!
@@ -31,26 +31,32 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
     var moveTimer = Timer()
     var isShow = Bool()
     
-    var stationAnnotations = [MKAnnotation]()
+    var ntcStationAnnotations = [MKAnnotation]()
+    var tcStationAnnotations = [MKAnnotation]()
+    
+    let application = UIApplication.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: NSNotification.Name(rawValue: "Init"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(removeAnnotations), name: NSNotification.Name(rawValue: "RemoveAnnotations"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissPage), name: NSNotification.Name(rawValue: "DismissPage"), object: nil)
         
         initData()
-        informationViewConstraint.constant = -(informationView.frame.height)
-        
-        
     }
     
     @objc func initData() {
+        informationViewConstraint.constant = -(informationView.frame.height)
+        stationStatus.isHidden = true
+        closeButton.isHidden = true
+        isShow = false
         informationBackground.isHidden = false
+        informationView.isHidden = true
         loading.isHidden = false
         loading.startAnimating()
         managerSetting()
         downloadNtcInformation()
+        downloadTcInformation()
     }
     
     func managerSetting() {
@@ -101,7 +107,7 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
             let resueID = "Pin"
             var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: resueID)
             pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: resueID)
-            let status = (annotation.title!)!.components(separatedBy: ",")[1]
+            let status = (annotation.title!)!.components(separatedBy: ",")[2]
             switch status {
             case "LessPin" :
                 pinView?.image = UIImage(named: "LessPin")
@@ -118,10 +124,11 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
     
     //選擇大頭針查看詳細資訊
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let status = (view.annotation?.title!)!.components(separatedBy: ",")[1]
-        let name = (view.annotation?.title!)!.components(separatedBy: ",")[0]
-        let cars = (view.annotation?.title!)!.components(separatedBy: ",")[2]
-        let spaces = (view.annotation?.title!)!.components(separatedBy: ",")[3]
+        let status = (view.annotation?.title!)!.components(separatedBy: ",")[2]
+        let CnName = (view.annotation?.title!)!.components(separatedBy: ",")[0]
+        let EnName = (view.annotation?.title!)!.components(separatedBy: ",")[1]
+        let cars = (view.annotation?.title!)!.components(separatedBy: ",")[3]
+        let spaces = (view.annotation?.title!)!.components(separatedBy: ",")[4]
         
         switch status {
         case "LessPin":
@@ -134,7 +141,7 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
             break
         }
         
-        stationName.text = name
+        stationName.text = "\(EnName)\n\(CnName)"
         carsNum.text = cars
         parkNum.text = spaces
         
@@ -149,12 +156,6 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
         startInformationViewMove()
     }
     
-    @objc func removeAnnotations() {
-        manager.stopUpdatingLocation()
-        mapView.removeAnnotations(stationAnnotations)
-        stationAnnotations = []
-    }
-    
     func startInformationViewMove() {
         var position = 0.0
         moveTimer = Timer.scheduledTimer(withTimeInterval: 0.0005, repeats: true, block: { (timer) in
@@ -163,11 +164,13 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
                     position += 1.0
                     self.informationViewConstraint.constant = CGFloat(0.5 - position)
                 } else {
+                    self.informationView.isHidden = true
                     self.stationStatus.isHidden = true
                     self.isShow = false
                     self.stoptInformationViewMove()
                 }
             } else {
+                self.informationView.isHidden = false
                 if self.informationViewConstraint.constant < 0.0 {
                     position += 1.0
                     self.informationViewConstraint.constant = -(self.informationView.frame.height) + CGFloat(position)
@@ -194,18 +197,17 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
                 if responseStatus.statusCode == 200 {
                     if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String:Any]] {
                         for j in json {
-                            let lat = j["lat"] as! String
-                            let lat_n = lat.trimmingCharacters(in: .whitespaces)
-                            let lon = j["lng"] as! String
-                            let lon_n = lon.trimmingCharacters(in: .whitespaces)
-                            let sna = j["sna"] as! String
-//                            let snaen = j["snaen"] as! String
-                            let carsNum = j["sbi"] as! String
-                            let totalSpace = j["tot"] as! String
-                            let spacesNum = j["bemp"] as! String
                             let act = j["act"] as! String
-                            
                             if act == "1" {
+                                let lat = j["lat"] as! String
+                                let lon = j["lng"] as! String
+                                let lat_n = lat.trimmingCharacters(in: .whitespaces)
+                                let lon_n = lon.trimmingCharacters(in: .whitespaces)
+                                let sna = j["sna"] as! String
+                                let snaen = j["snaen"] as! String
+                                let carsNum = j["sbi"] as! String
+                                let totalSpace = j["tot"] as! String
+                                let spacesNum = j["bemp"] as! String
                                 let userCoordinate = CLLocation(latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
                                 let stationCoordinate = CLLocation(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
                                 self.distance = userCoordinate.distance(from: stationCoordinate)
@@ -216,29 +218,87 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
                                 if self.distance <= 1000.0 {
                                     if Int(carsNum)! <= 5 {
                                         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
-                                        annotation.title = "\(sna),LessPin,\(carsNum),\(spacesNum)"
-                                        self.stationAnnotations.append(annotation)
+                                        annotation.title = "\(sna),\(snaen),LessPin,\(carsNum),\(spacesNum)"
+                                        self.ntcStationAnnotations.append(annotation)
                                     } else if Int(carsNum)! > 5 && Int(carsNum)! <= (Int(totalSpace)! / 2) {
                                         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
-                                        annotation.title = "\(sna),NormalPin,\(carsNum),\(spacesNum)"
-                                        self.stationAnnotations.append(annotation)
+                                        annotation.title = "\(sna),\(snaen),NormalPin,\(carsNum),\(spacesNum)"
+                                        self.ntcStationAnnotations.append(annotation)
                                     } else if Int(carsNum)! > (Int(totalSpace)! / 2) {
                                         annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
-                                        annotation.title = "\(sna),NormalPin,\(carsNum),\(spacesNum)"
-                                        self.stationAnnotations.append(annotation)
+                                        annotation.title = "\(sna),\(snaen),FullPin,\(carsNum),\(spacesNum)"
+                                        self.ntcStationAnnotations.append(annotation)
                                     }
                                 }
                                 
                             }
                         }
                         DispatchQueue.main.async {
-                            self.mapView.addAnnotations(self.stationAnnotations)
+                            self.mapView.addAnnotations(self.ntcStationAnnotations)
                         }
                     }
                 }
             }
         }
         dataDask.resume()
+    }
+    
+    //台北市youbike資料庫
+    func downloadTcInformation() {
+        let information = "http://data.taipei/youbike"
+        let apiURL = URL(string: information)
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: apiURL!, completionHandler: { (data, response, error) in
+            if error == nil {
+                let responseStatus = response as! HTTPURLResponse
+                if responseStatus.statusCode == 200 {
+                    let json = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
+                    let retVal = json["retVal"] as! [String:Any]
+                    for (_,value) in retVal {
+                        let j = value as! [String:Any]
+                        let act = j["act"] as! String
+                        if act == "1" {
+                            let lat = j["lat"] as! String
+                            let lon = j["lng"] as! String
+                            let lat_n = lat.trimmingCharacters(in: .whitespaces)
+                            let lon_n = lon.trimmingCharacters(in: .whitespaces)
+                            let sna = j["sna"] as! String
+                            let snaen = j["snaen"] as! String
+                            let carsNum = j["sbi"] as! String
+                            let spacesNum = j["bemp"] as! String
+                            let totalSpace = j["tot"] as! String
+                            
+                            let userCoordinate = CLLocation(latitude: self.coordinate.latitude, longitude: self.coordinate.longitude)
+                            let stationCoordinate = CLLocation(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
+                            self.distance = userCoordinate.distance(from: stationCoordinate)
+                            
+                            let annotation = MKPointAnnotation()
+                            
+                            //顯示距離使用者一公里內的租借站
+                            if self.distance <= 1000.0 {
+                                if Int(carsNum)! <= 5 {
+                                    annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
+                                    annotation.title = "\(sna),\(snaen),LessPin,\(carsNum),\(spacesNum)"
+                                    self.ntcStationAnnotations.append(annotation)
+                                } else if Int(carsNum)! > 5 && Int(carsNum)! <= (Int(totalSpace)! / 2) {
+                                    annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
+                                    annotation.title = "\(sna),\(snaen),NormalPin,\(carsNum),\(spacesNum)"
+                                    self.ntcStationAnnotations.append(annotation)
+                                } else if Int(carsNum)! > (Int(totalSpace)! / 2) {
+                                    annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat_n)!, longitude: Double(lon_n)!)
+                                    annotation.title = "\(sna),\(snaen),FullPin,\(carsNum),\(spacesNum)"
+                                    self.ntcStationAnnotations.append(annotation)
+                                }
+                            }
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.mapView.addAnnotations(self.tcStationAnnotations)
+                    }
+                }
+            }
+        })
+        dataTask.resume()
     }
     
     //    func downLoadGogoroBatteryStation() {
@@ -265,12 +325,38 @@ class UserLocationStationViewController: UIViewController, CLLocationManagerDele
     //        dataDask.resume()
     //    }
     
+    @objc func dismissPage() {
+        manager.stopUpdatingLocation()
+        
+        if ntcStationAnnotations.count != 0 {
+            mapView.removeAnnotations(ntcStationAnnotations)
+            ntcStationAnnotations = []
+        }
+        
+        if tcStationAnnotations.count != 0 {
+            mapView.removeAnnotations(tcStationAnnotations)
+            tcStationAnnotations = []
+        }
+        
+        //退回背景時將資訊頁init
+        if isShow == true {
+            informationViewConstraint.constant = -(informationView.frame.height)
+            informationView.isHidden = true
+            stationStatus.isHidden = true
+            closeButton.isHidden = true
+            isShow = false
+            informationBackground.isHidden = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        dismissPage()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        removeAnnotations()
-    }
+    
     
 }
